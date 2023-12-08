@@ -36,7 +36,7 @@ With a default Windows 10 installation, here's how the Zig version currently com
 
 Current known differences to SHGetKnownFolderPath:
 
-- The Zig version does not support any KF_FLAG_ options (e.g. `KF_FLAG_CREATE`, etc) and instead always functions as if SHGetKnownFolderPath was called with the sole option KF_FLAG_DONT_VERIFY. That is, the Zig version does not verify that the path returns exists on the filesystem (while SHGetKnownFolderPath does that verification by default).
+- The Zig version does not support any KF_FLAG_ options (e.g. `KF_FLAG_CREATE`, etc) and instead always functions as if SHGetKnownFolderPath was called with the sole option KF_FLAG_DONT_VERIFY. That is, the Zig version does not verify that the path it returns exists on the filesystem (while SHGetKnownFolderPath does that verification by default).
   + Support for most KF_ flags would complicate the implementation to a huge degree, since with e.g. the `CREATE` and `INIT` flags, SHGetKnownFolderPath can be responsible for things like creating/initializing special Library folders, desktop.ini files, folder attributes, etc, etc.
   + There's currently no plan to reimplement anything beyond getting a path.
 - The Zig version does not support custom known folder GUIDs, and instead only allows retrieving the path for the default known folders in `KnownFolders.h`.
