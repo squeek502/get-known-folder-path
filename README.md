@@ -1,7 +1,7 @@
 get-known-folder-path
 =====================
 
-This is a repository focusing on implementing a function that is intended to be similar to [`SHGetKnownFolderPath`](https://learn.microsoft.com/en-us/windows/win32/api/shlobj_core/nf-shlobj_core-shgetknownfolderpath) to get the same functionality in Zig while [avoiding the dependency on shell32.dll](https://randomascii.wordpress.com/2018/12/03/a-not-called-function-can-cause-a-5x-slowdown/). Ultimately, the intention is to merge the code in this repository into the Zig standard library in order to close https://github.com/ziglang/zig/issues/18098.
+This is a repository focusing on implementing a function that is similar to [`SHGetKnownFolderPath`](https://learn.microsoft.com/en-us/windows/win32/api/shlobj_core/nf-shlobj_core-shgetknownfolderpath), in order to get the same functionality in Zig while [avoiding the dependency on shell32.dll](https://randomascii.wordpress.com/2018/12/03/a-not-called-function-can-cause-a-5x-slowdown/). Ultimately, the intention is to merge the code into the Zig standard library in order to close https://github.com/ziglang/zig/issues/18098.
 
 Two current features of the implementation that ideally will be maintained in the finished version:
 
