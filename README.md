@@ -1,7 +1,7 @@
 get-known-folder-path
 =====================
 
-This is a repository focusing on implementing a function that is intended to be similar to [`SHGetKnownFolderPath`](https://learn.microsoft.com/en-us/windows/win32/api/shlobj_core/nf-shlobj_core-shgetknownfolderpath) to get the same functionality in Zig while avoiding the dependency on shell32.dll. Ultimately, the intention is to merge the code in this repository into the Zig standard library in order to close https://github.com/ziglang/zig/issues/18098.
+This is a repository focusing on implementing a function that is intended to be similar to [`SHGetKnownFolderPath`](https://learn.microsoft.com/en-us/windows/win32/api/shlobj_core/nf-shlobj_core-shgetknownfolderpath) to get the same functionality in Zig while [avoiding the dependency on shell32.dll](https://randomascii.wordpress.com/2018/12/03/a-not-called-function-can-cause-a-5x-slowdown/). Ultimately, the intention is to merge the code in this repository into the Zig standard library in order to close https://github.com/ziglang/zig/issues/18098.
 
 Two current features of the implementation that ideally will be maintained in the finished version:
 
@@ -26,6 +26,8 @@ This is my current understanding about what `SHGetKnownFolderPath` is doing (thi
   + If the path does not have an entry in `User Shell Folders`, the parent path will be looked up in `User Shell Folders` until it hits a `fixed` path
 - If there is no redirected path in `User Shell Folders` or the path is of type `fixed`, then a path is constructed using various methods.
 - Environment variables within the path are expanded, with special casing for certain environment variables that are resolved without actually accessing environment variables (e.g. `%WINDIR%`, `%SystemDrive%`, `%USERPROFILE%`, `%ProgramData%`, `%PUBLIC%`). When exactly this special casing takes place is not fully figured out yet (see known differences around `user_profiles` below).
+
+## Status
 
 With a default Windows 10 installation, here's how the Zig version currently compares to `SHGetKnownFolderPath` (with `KF_FLAG_DONT_VERIFY` set):
 
