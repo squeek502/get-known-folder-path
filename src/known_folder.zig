@@ -464,7 +464,7 @@ fn expandPath(unexpanded: []const u16, registry: *LazyRegistry) GetPathError!win
         if (windows.eqlIgnoreCaseWTF16(part, L("%WINDIR%"))) {
             // TODO: This is probably able to be replaced by a read of PEB.ReadOnlyStaticServerData
             // https://github.com/mirror/reactos/blob/c6d2b35ffc91e09f50dfb214ea58237509329d6b/reactos/include/reactos/subsys/win/base.h#L109-L136
-            const written_code_units = misc.windows.kernel32.GetWindowsDirectoryW(buf.data[buf.len..], @intCast(buf.data.len - buf.len * 2));
+            const written_code_units = misc.windows.kernel32.GetWindowsDirectoryW(buf.data[buf.len..], @intCast((buf.data.len - buf.len) * 2));
             if (written_code_units == 0) switch (windows.kernel32.GetLastError()) {
                 else => |err| return windows.unexpectedError(err),
             };
@@ -472,7 +472,7 @@ fn expandPath(unexpanded: []const u16, registry: *LazyRegistry) GetPathError!win
         } else if (windows.eqlIgnoreCaseWTF16(part, L("%SystemDrive%"))) {
             // TODO: This is probably able to be replaced by a read of PEB.ReadOnlyStaticServerData
             // https://github.com/mirror/reactos/blob/c6d2b35ffc91e09f50dfb214ea58237509329d6b/reactos/include/reactos/subsys/win/base.h#L109-L136
-            const written_code_units = misc.windows.kernel32.GetWindowsDirectoryW(buf.data[buf.len..], @intCast(buf.data.len - buf.len * 2));
+            const written_code_units = misc.windows.kernel32.GetWindowsDirectoryW(buf.data[buf.len..], @intCast((buf.data.len - buf.len) * 2));
             if (written_code_units == 0) switch (windows.kernel32.GetLastError()) {
                 else => |err| return windows.unexpectedError(err),
             };
